@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Weather.css'
 import { setSelectionRange } from '@testing-library/user-event/dist/utils'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 //Images
 // import searchIcon from '.search.png';
@@ -64,7 +66,7 @@ const WeatherDetails = ({
 const Weather = () => {
   let api_key = 'd69ce7886d1a016df3dcab6bc3667072'
   const [text, setText] = useState('')
-  const [icon, setIcon] = useState('sun.gif')
+  const [icon, setIcon] = useState('clear.gif')
   const [temp, setTemp] = useState(0)
   const [city, setCity] = useState('')
   const [country, setCountry] = useState('')
@@ -89,16 +91,17 @@ const Weather = () => {
     '01n': 'sun.gif',
     '02d': 'cloudy.gif',
     '02n': 'cloudy.gif',
-    '03d': 'drizzle.gif',
+    '03d': 'sun.gif',
     '03n': 'drizzle.gif',
-    '04d': 'drizzle.gif',
-    '04n': 'drizzle.gif',
+    '04d': 'sun.gif',
+    '04n': 'snow.gif',
     '09d': 'rain.gif',
     '09n': 'rain.gif',
-    '10d': 'rain.gif',
+    '10d': 'cloudy.gif',
     '10n': 'rain.gif',
     '13d': 'snow.gif',
     '13n': 'snow.gif',
+    '50d': 'sun.gif',
   }
 
   const search = async () => {
@@ -110,6 +113,17 @@ const Weather = () => {
       let data = await res.json()
       if (data.cod === '404') {
         console.error('City not found!')
+        toast.error('City not found!', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,git 
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        
+          });
         setCityNotFound(true)
         setLoading(false)
         return
@@ -121,12 +135,21 @@ const Weather = () => {
       setLog(data.coord.lon)
       setHumidity(data.main.humidity)
       setWind(data.wind.speed)
+
+      const weatherIconcode = data.weather[0].icon
+      console.log(data.weather[0].icon)
+      setIcon(weatherIconMap[weatherIconcode] || 'clear.gif')
+      setCityNotFound(false)
     } catch (error) {
       console.error('An error occured: ', error.message)
     } finally {
       setLoading(false)
     }
   }
+
+  useEffect(function(){
+    search()
+  },[])
 
   return (
     <>
@@ -159,6 +182,20 @@ const Weather = () => {
       <p className="copyright">
         Designed By <a href="https://github.com/Guhan11">Guhan</a>
       </p>
+
+      <ToastContainer
+position="top-right"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="colored"
+
+/>
     </>
   )
 }
