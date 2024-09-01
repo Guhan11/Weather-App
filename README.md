@@ -1,4 +1,4 @@
-<p align="center"> <img src="D:\React Project\WeatherApp\public\favicon.ico" alt="WeatherApp Logo" width="100"/> </p> <h1 align="center">🌦️ WeatherApp</h1> <p align="center"> Your go-to app for real-time weather updates 🌍 </p> <p align="center"> <a href="https://weatherguhan.vercel.app/"><strong>Explore the App »</strong></a> </p> <p align="center"> <img src="![image](https://github.com/user-attachments/assets/d853b615-8f09-4bd4-9aaf-20ada0a03763)
+<p align="center"> <img src="favicon.ico" alt="WeatherApp Logo" width="100"/> </p> <h1 align="center">🌦️ WeatherApp</h1> <p align="center"> Your go-to app for real-time weather updates 🌍 </p> <p align="center"> <a href="https://weatherguhan.vercel.app/"><strong>Explore the App »</strong></a> </p> <p align="center"> <img src="![image](https://github.com/user-attachments/assets/d853b615-8f09-4bd4-9aaf-20ada0a03763)
 " alt="WeatherApp Screenshot" width="600"/> </p>
 
 🌟 **Features**
