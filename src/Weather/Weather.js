@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './Weather.css'
 import { setSelectionRange } from '@testing-library/user-event/dist/utils'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 //Images
 // import searchIcon from '.search.png';
@@ -24,6 +24,28 @@ const WeatherDetails = ({
   humidity,
   wind,
 }) => {
+  const [currenTime, setCurrentTime] = useState(new Date())
+
+  const formatHour = (hour) => {
+    return hour === 0 ? 12 : hour > 12 ? hour - 12 : hour
+  }
+
+  // const formatDate = (date) => {
+  //   return date.toLocalDateString ();
+  // }
+  
+  const formatTimeWithLeadingZero = (num) => {
+    return num < 10 ? `0${num}` : num;
+  }
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date())
+    }, 1000)
+
+    return () => clearInterval(timer)
+  }, [])
+
   return (
     <>
       <div className="image">
@@ -50,6 +72,12 @@ const WeatherDetails = ({
             <div className="humidity-percent">{humidity} %</div>
             <div className="text">Humidity</div>
           </div>
+        </div>
+        <div className="element1">
+          <div className='ind'>IND TIME</div>
+          <div className="time">{formatTimeWithLeadingZero(formatHour(currenTime.getHours()))}  : { formatTimeWithLeadingZero(currenTime.getMinutes())} : { formatTimeWithLeadingZero(currenTime.getSeconds())}  {currenTime.getHours()>= 12 ?"PM": "AM"}
+          </div>
+          <div className="date">{formatTimeWithLeadingZero(currenTime.getDate())+"/"+formatTimeWithLeadingZero(currenTime.getMonth()) +"/"+formatTimeWithLeadingZero(currenTime.getFullYear())}</div>
         </div>
         <div className="element">
           <img src={'wind.gif'} alt="wind" className="icon" />
@@ -102,6 +130,7 @@ const Weather = () => {
     '13d': 'snow.gif',
     '13n': 'snow.gif',
     '50d': 'sun.gif',
+    '50n': 'night.gif',
   }
 
   const search = async () => {
@@ -114,16 +143,15 @@ const Weather = () => {
       if (data.cod === '404') {
         console.error('City not found!')
         toast.error('City not found!', {
-          position: "top-right",
+          position: 'top-right',
           autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "colored",
-        
-          });
+          theme: 'colored',
+        })
         setCityNotFound(true)
         setLoading(false)
         return
@@ -147,9 +175,9 @@ const Weather = () => {
     }
   }
 
-  useEffect(function(){
+  useEffect(function () {
     search()
-  },[])
+  }, [])
 
   return (
     <>
@@ -184,18 +212,17 @@ const Weather = () => {
       </p>
 
       <ToastContainer
-position="top-right"
-autoClose={5000}
-hideProgressBar={false}
-newestOnTop={false}
-closeOnClick
-rtl={false}
-pauseOnFocusLoss
-draggable
-pauseOnHover
-theme="colored"
-
-/>
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </>
   )
 }

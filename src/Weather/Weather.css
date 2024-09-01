@@ -137,3 +137,24 @@ body {
   text-decoration: none;
   color: #eeff00da;
 }
+.element1 {
+  padding-top: 30px;
+  padding-left: 10px;
+  text-align: center;
+}
+.ind{
+font-size: 10px;
+margin-bottom: 4px;
+color:#888
+}
+.time{
+margin-bottom: 4px;
+font-size: 14px;
+font-weight: 700;
+}
+.date{
+  color: #888;
+  margin-top: 4px;
+font-size: 10px;
+font-weight: 700;
+}
