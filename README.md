@@ -34,21 +34,6 @@ Axios: A promise-based HTTP client for making requests to the OpenWeatherMap API
 CSS: For styling the app with a clean and modern design.
 OpenWeatherMap API: Our source for accurate and real-time weather data.
 
-📂 **Project Structure**
-Here's an overview of the project's structure:
-
-WeatherApp/
-├── public/                # Public assets like index.html
-├── src/
-│   ├── Components/        # Reusable components for modularity
-│   ├── Icons/             # Icon assets for the app
-│   ├── Weather/           # Weather-related components
-│   ├── App.js             # Main app component
-│   └── index.js           # Entry point of the app
-├── .gitignore             # Files to ignore in version control
-├── package.json           # NPM scripts and dependencies
-└── README.md              # The file you're reading!
-
 🌐 **Live Demo**
 Check out the live version of WeatherApp: weatherguhan.vercel.app
 
