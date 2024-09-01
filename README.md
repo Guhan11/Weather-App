@@ -37,7 +37,6 @@ OpenWeatherMap API: Our source for accurate and real-time weather data.
 📂 **Project Structure**
 Here's an overview of the project's structure:
 
-**graphql**
 WeatherApp/
 ├── public/                # Public assets like index.html
 ├── src/
